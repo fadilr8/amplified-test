@@ -22,7 +22,7 @@
         "tailwindcss": "^2.0.2"
     },
     "engines": {
-        "node": ">=12"
+        "node": "15.11.0"
     }
 
 }
