@@ -1,0 +1,411 @@
+input[type="radio"], input[type="checkbox"] {
+  margin: 2px 0 0;
+}
+.container-radio {
+  height: 50%;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+a.navbar-brand {
+  max-width: 480px;
+  padding: 7px 0;
+  color: #f8f9fa;
+}
+#survey {
+  max-width: 480px;
+  padding-top: 75px;
+}
+.head-intro {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 24px;
+  color: #333333;
+}
+.head-intro:after {
+  content: "";
+  display: block;
+  width: 30%;
+  margin-top: 1rem;
+  border-bottom: 4px solid #2B80A3;
+}
+.text-description {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  color: #828282;
+}
+.question-intro-description-dr {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  color: #4F4F4F;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.custom-control {
+  position: relative;
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 0;
+}
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+.custom-control-input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+input {
+  min-height: 50px;
+}
+.checkmark {
+  padding: .8rem 1.7rem;
+  margin: 10px;
+  height: 100%;
+  width: 100%;
+  background-color: #FFF;
+  color: #333;
+  display: inline-block;
+  text-align: left;
+  margin: 0;
+  border-radius: .3rem;
+  border: 1px solid #888;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #828282;
+}
+.checkmark:hover {
+  background-color: #2B80A3;
+  color: #FFF;
+  border: 1px solid #fff;
+}
+input:checked~.checkmark {
+  background-color: #2B80A3;
+  color: #FFF;
+  border: 1px solid #fff;
+}
+input:checked~span#loading {
+  display: inline;
+  position: absolute;
+  z-index: 999;
+  right: 5%;
+  top: 25%;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.container input:checked~.checkmark:after {
+  display: block;
+}
+.container .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0;
+}
+#loading {
+  display: none;
+}
+input:checked~span#loading {
+  display: inline;
+  position: absolute;
+  z-index: 999;
+  right: 5%;
+  top: 25%;
+}
+.ouro {
+  position: relative;
+  display: inline-block;
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  background: none repeat scroll 0 0 #2B80A3;
+  overflow: hidden;
+}
+.ouro:after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  display: block;
+  height: 8px;
+  width: 8px;
+  background: none repeat scroll 0 0 #2B80A3;
+  border-radius: 50%;
+}
+.ouro>span {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+}
+.ouro3 .anim {
+  -webkit-animation-delay: 0s;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+}
+.ouro3 .right .anim {
+  -webkit-animation-name: ui-spinner-rotate-right;
+  -webkit-animation-delay: 0;
+  -webkit-animation-delay: 0s;
+  animation-name: ui-spinner-rotate-right;
+  animation-delay: 0;
+  animation-delay: 0s;
+}
+.round .ouro:after {
+  display: none
+}
+.double .ouro:after {
+  height: 13px;
+  width: 13px;
+  left: 7px;
+  top: 7px;
+  border: 10px solid #ddd;
+  background: transparent;
+  box-shadow: none;
+}
+.left {
+  left: 0
+}
+.right {
+  left: 50%
+}
+.anim {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 999px;
+  background: none repeat scroll 0 0 #FFF;
+  opacity: 0.8;
+  -webkit-animation: ui-spinner-rotate-left 3s;
+  animation: ui-spinner-rotate-left 3s;
+  -webkit-transform-origin: 0 50% 0;
+  transform-origin: 0 50% 0;
+}
+.left .anim {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.right .anim {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  left: -100%;
+  -webkit-transform-origin: 100% 50% 0;
+  transform-origin: 100% 50% 0;
+}
+.btn-fill-center {
+  color: #fff;
+  background-color: #2B80A3;
+  border-color: #f8f9fa;
+  width: 50%!important;
+  margin: 2rem auto!important;
+  padding: 15px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.btn-outfill {
+  border: .1rem solid #2B80A3!important;
+  background: transparent;
+  color: #2B80A3;
+  padding: .7rem 10%!important;
+  font-weight: 600;
+}
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+.btn-outfill:focus,
+.btn-outfill:hover {
+  background: #2B80A3;
+  color: #FFF;
+}
+.btn {
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-fill {
+  border: .1rem solid #2B80A3;
+  background: #2B80A3;
+  color: #FFF;
+  padding: .7rem 10%;
+  font-weight: 600;
+}
+.btn-fill:focus,
+.btn-fill:hover {
+  background: transparent;
+  color: #2B80A3;
+}
+.btn-group-lg>.btn, .btn-lg {
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: .3rem;
+}
+.p5 a {
+  border-radius: 10px;
+  height: 5px;
+  padding: 0!important;
+  /* margin: auto .5%; */
+  background-color: rgba(43, 128, 163, 0.2);
+}
+.p5 .is-active {
+  border-radius: 10px;
+  background-color: #2B80A3;
+  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
+}
+.p5 .is-active-visited {
+  box-shadow: none;
+}
+.pagination {
+  padding: 0;
+  margin: 0 0 .8rem 0;
+}
+.pagination ul {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+  list-style-type: none;
+}
+.pagination a {
+  display: inline-block;
+  padding: 10px 10px;
+  color: #222;
+}
+.col {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+.sub-head {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  color: #2B80A3;
+}
+#question-info {
+  margin: 1rem auto;
+  font-weight: 500;
+  font-size: 14px;
+  color: #B2BEC3;
+  line-height: 21px;
+}
+.question-head-bold {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333333;
+}
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+.form-control {
+  opacity: 1!important;
+  border: 1px solid #888;
+  padding: .8rem 1.4rem;
+  height: 100%!important;
+  width: 100%!important;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+input {
+  min-height: 50px;
+}
+.img-thumbnail {
+  background-image: url(https://www.ibunda.id/tespsikologi/assets/img/bg-result.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.img-thumbnail {
+  padding: .25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: .25rem;
+  max-width: 100%;
+  height: auto;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+.question-intro-head {
+  /* font-size: 1.2rem; */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #333333;
+}
+.question-head, .question-intro-head {
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #4F4F4F;
+}
+.rekomendasi-area {
+  padding: 1.3rem;
+  border: 1px solid #888;
+  border-radius: .3rem;
+}
