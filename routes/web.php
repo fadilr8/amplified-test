@@ -28,3 +28,14 @@ Route::get('/questions', [QuestionController::class, 'questions']);
 Route::get('/result', [ResultController::class, 'result']);
 
 Route::post('/role/{id}', [DashboardController::class, 'assignRole']);
+
+Route::get('/test-mail/{id}', function ($id) {
+    $res = \App\Models\Result::find($id);
+
+    $result = [
+        'title' => $res->title,
+        'result' => $res->result
+    ];
+    
+    return view('emails.result', compact('result'));
+});
