@@ -134,6 +134,7 @@
           </div>
           <div class="answer-area mb-3">
             <input id="id_input" type="email" placeholder="Example : hallo@ibunda.id" name="0" class="input-md emailinput form-control">
+            <span id="warning" style="color: red; font-size: 14px"></span>
           </div>
           <div class="answer-area mb-4">
             <div class="flex flex-wrap -mx-4 justify-between m-10">
@@ -143,7 +144,7 @@
                 </button>
               </div>
               <div class="mr-5">
-                <button class="btn btn-xs btn-fill w-20" id="disc-next" onclick="toResult()">
+                <button class="btn btn-xs btn-fill w-20" id="disc-next" onclick="sendMail()">
                   Lanjut
                 </button>
               </div>
@@ -161,6 +162,7 @@
               <p>Kamu sudah berhasil mengisi Test Kesehatan Online by Ibunda.id - Konseling Dengan Psikolog. Hasilnya menunjukan...</p>
               <div class="rekomendasi-area">
                   <h5 id="result-title"></h5>
+                  <br>
                   <p id="result-wording"></p>
               </div>
           </div>
@@ -169,6 +171,26 @@
     </div>
   </div>
 
+  <script>
+    validateEmail = (email) => {
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+
+    validate = () => {
+      let warning = $('#warning'); 
+      let email = $('#id_input').val();
+      warning.text('');
+
+      if (!validateEmail(email)) {
+        warning.text('Email is not valid!');
+        $('#id_input').css('border-color', 'red');
+      } else {
+        warning.text('');
+        $('#id_input').css('border-color', '#ced4da');
+      }
+    }
+  </script>
   <script>
     let introStep = true;
     let approvalStep = false;
@@ -190,6 +212,7 @@
     let score;
     let finalResult;
     var resultData;
+    let email;
     
     $(document).ready(function() {
       getQuestion();
@@ -215,6 +238,8 @@
       if (resultStep == false) {
         $('#resultStep').hide();
       }
+
+      $('#id_input').on('input', validate);
       
       $('#aggreement0').click(function() {
         $('#aggreement1').prop('checked', false);
@@ -500,17 +525,36 @@
           assignQuestion(response);
         }
       });
+    }
+    
+    getResult = () => {
+      $.ajax({
+        url: "/result",
+        type: "GET",
+        data: { score: this.finalResult },
+        dataType: 'json',
+        success: function (response) {
+          assignResult(response);
+        }
+      });
+    }
 
-      getResult = () => {
+    sendMail = () => {
+      this.email = $('#id_input').val();
+
+      if (validateEmail(this.email)) {
         $.ajax({
-          url: "/result",
+          url: "/send-result",
           type: "GET",
-          data: { score: this.finalResult },
+          data: { email: this.email, result: resultData.data.id},
           dataType: 'json',
           success: function (response) {
-            assignResult(response);
+            toResult();
           }
-        });
+        }); 
+      } else {
+        $('#warning').text('Email is not valid!');
+        $('#id_input').css('border-color', 'red');
       }
     }
   </script>

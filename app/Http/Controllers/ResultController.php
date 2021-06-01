@@ -7,6 +7,8 @@ use App\Models\Result;
 
 class ResultController extends Controller
 {
+    public $res;
+
     public function result(Request $request)
     {
         $point = $request->score;
@@ -20,7 +22,18 @@ class ResultController extends Controller
         }
 
         $result = Result::find($index);
+        $this->res = $result;
 
         return json_encode(['data' => $result]);
+    }
+
+    public function sendMail(Request $request) {
+        // dd($request->re);
+        $email = $request->email;
+        $result = Result::find($request->result);
+        
+        \Mail::to($email)->send(new \App\Mail\ResultMail($result));
+
+        return json_encode(['message' => 'Mail sent!']);
     }
 }

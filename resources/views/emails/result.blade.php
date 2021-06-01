@@ -10,16 +10,13 @@
 </head>
 <body>
     <div class="my-10 mx-auto" style="max-width: 480px">
-        <div class="relative w-full px-4 text-center mx-auto">
-            <img class="img-thumbnail" src="https://www.ibunda.id/tespsikologi/assets/img/warning.png" alt="" style="border: none">
-        </div>
         <br>
         <h4>Kamu sudah berhasil mengisi Test Kesehatan Online by Ibunda.id - Konseling Dengan Psikolog. Hasilnya menunjukan...</h4>
         <br>
         <div>
-            <h5 class="">{{ $result['title'] }}</h5>
+            <h5 class="">{{ $result->title }}</h5>
             <br>
-            <p>{{ $result['result'] }}</p>
+            <p>{{ $result->result }}</p>
         </div>
     </div>
 </body>
