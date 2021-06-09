@@ -98,7 +98,7 @@
       </div>
       <div id="quizStep">
         <div class="flex flex-wrap justify-center items-center">
-          <div class="relative w-full min-h-0 px-4">
+          <div class="relative w-full min-h-0">
             <x-quiz-pagination />
             <h6 class="sub-head mb-2">Pertanyaan</h6>
             <div class="question-area mb-6">
@@ -161,7 +161,7 @@
               <h4 class="question-intro-head">Yuk Cek Hasilnya!</h4>
               <p>Kamu sudah berhasil mengisi Test Kesehatan Online by Ibunda.id - Konseling Dengan Psikolog. Hasilnya menunjukan...</p>
               <div class="rekomendasi-area">
-                  <h5 id="result-title"></h5>
+                  <h5 class="font-semibold" id="result-title"></h5>
                   <br>
                   <p id="result-wording"></p>
               </div>
@@ -508,12 +508,12 @@
     }
 
     addQuestionText = (num) => {
-      $('#question-text').text(questions.data[num].question);
+      $('#question-text').html(questions.data[num].question);
     }
 
     addResultText = () => {
       $('#result-title').text(resultData.data.title);
-      $('#result-wording').text(resultData.data.result);
+      $('#result-wording').html(resultData.data.result);
     }
 
     getQuestion = () => {
@@ -546,7 +546,7 @@
         $.ajax({
           url: "/send-result",
           type: "GET",
-          data: { email: this.email, result: resultData.data.id},
+          data: { email: this.email, result: resultData.data.id, score: this.finalResult},
           dataType: 'json',
           success: function (response) {
             toResult();

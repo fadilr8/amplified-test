@@ -106,7 +106,7 @@ input:checked~.checkmark {
 input:checked~span#loading {
   display: inline;
   position: absolute;
-  z-index: 999;
+  /* z-index: 999; */
   right: 5%;
   top: 25%;
 }
@@ -132,7 +132,7 @@ input:checked~span#loading {
 input:checked~span#loading {
   display: inline;
   position: absolute;
-  z-index: 999;
+  /* z-index: 999; */
   right: 5%;
   top: 25%;
 }
@@ -408,4 +408,9 @@ img {
   padding: 1.3rem;
   border: 1px solid #888;
   border-radius: .3rem;
+}
+
+.rekomendasi-area a {
+  color:#2B80A3;
+  text-decoration: underline;
 }

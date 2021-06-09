@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Result;
+use App\Models\Participant;
 
 class ResultController extends Controller
 {
@@ -31,6 +32,13 @@ class ResultController extends Controller
         // dd($request->re);
         $email = $request->email;
         $result = Result::find($request->result);
+        $score = $request->score;
+        
+        Participant::create([
+            'email' => $email,
+            'score' => $score
+        ]);
+        
         
         \Mail::to($email)->send(new \App\Mail\ResultMail($result));
 

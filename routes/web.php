@@ -21,12 +21,23 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/participants', [DashboardController::class, 'participants'])->middleware(['auth'])->name('participants');
+Route::get('/roles', [DashboardController::class, 'roles'])->middleware(['auth'])->name('roles');
+Route::post('/role/{id}', [DashboardController::class, 'assignRole']);
+
+Route::prefix('users')->group(function () {
+    Route::get('/', [DashboardController::class, 'users'])->middleware(['auth'])->name('users');
+    Route::post('/', [DashboardController::class, 'createUser'])->middleware(['auth'])->name('user.create');
+});
 
 require __DIR__.'/auth.php';
 
 Route::get('/questions', [QuestionController::class, 'questions']);
 Route::get('/result', [ResultController::class, 'result']);
 
-Route::post('/role/{id}', [DashboardController::class, 'assignRole']);
 
 Route::get('/send-result', [ResultController::class, 'sendMail']);
+
+Route::get('/test', function() {
+    return view('welcome');
+});
