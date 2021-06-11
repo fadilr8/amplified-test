@@ -36,18 +36,21 @@ Route::group(['middleware' => ['role:superadministrator']], function () {
     });
 });
 
-Route::middleware(['auth', 'second'])->group(function () {
-    
-});
-Route::prefix('users')->group(function () {
-    Route::get('/', [DashboardController::class, 'users'])->middleware(['auth'])->name('users');
-    Route::post('/', [DashboardController::class, 'createUser'])->middleware(['auth'])->name('user.create');
+Route::middleware(['permission:users-create|users-read|users-update|users-delete'])->group(function () {
+    Route::prefix('users')->group(function () {
+        Route::get('/', [DashboardController::class, 'users'])->middleware(['auth'])->name('users');
+        Route::middleware(['permission:users-create'])->group(function () {
+            Route::post('/', [DashboardController::class, 'createUser'])->middleware(['auth'])->name('user.create');
+        });
+    });
 });
 
 require __DIR__.'/auth.php';
 
+
 Route::get('/questions', [QuestionController::class, 'questions']);
 Route::get('/result', [ResultController::class, 'result']);
+Route::get('/result/download', [ResultController::class, 'download'])->name('result.download');
 
 
 Route::get('/send-result', [ResultController::class, 'sendMail']);

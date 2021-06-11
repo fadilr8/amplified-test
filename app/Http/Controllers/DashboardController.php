@@ -22,14 +22,14 @@ class DashboardController extends Controller
 
     public function roleAssign(Request $request) {
         $user = User::find($request->id);
-        $user->attachRole($request->role);
+        $user->syncRolesWithoutDetaching([$request->role]);
+        $user->touch();
 
         return redirect()->back();
     }
 
     public function roleAssignIndex(Request $request) {
-        $users = User::get();
-        $admin = User::find(12);
+        $users = User::orderBy('updated_at', 'desc')->get();
         $roles = Role::all();
 
         // dd("hello");

@@ -44,4 +44,11 @@ class ResultController extends Controller
 
         return json_encode(['message' => 'Mail sent!']);
     }
+
+    public function download(Request $request) {
+        $result = Result::find($request->result_id);
+        $image = $result->download_image;
+
+        return \Storage::disk('public')->download($image);
+    }
 }

@@ -156,9 +156,9 @@
         <div class="flex flex-wrap -mx-4 justify-center items-center">
           <div class="max-w-full relative w-full px-4">
               <div class="relative w-full px-4 text-center mx-auto">
-                  <img src="https://www.ibunda.id/tespsikologi/assets/img/warning.png" class="img-thumbnail" style="border: none;">
+                  <img id="result-image" src="" class="img-thumbnail" style="border: none;">
               </div>
-              <h4 class="question-intro-head">Yuk Cek Hasilnya!</h4>
+              <h4 class="text-xl font-semibold leading-6 mb-2" style="color:#333333">Yuk Cek Hasilnya!</h4>
               <p>Kamu sudah berhasil mengisi Test Kesehatan Online by Ibunda.id - Konseling Dengan Psikolog. Hasilnya menunjukan...</p>
               <div class="rekomendasi-area">
                 <h5 class="font-semibold" id="result-title"></h5>
@@ -168,7 +168,10 @@
           </div>
         </div>
         <div id="btn-group" class="flex flex-wrap -mx-4 text-center mb-2 mt-4">
-          <div class="w-full px-4 mb-6"><button class="w-full btn btn-xs btn-outfill btn-block result-show">Download Hasil</button></div>
+          <form id='download-form' action="{{ route('result.download') }}" class="w-full">
+            <input name="result_id" id="result-id" value="" type="hidden">
+            <div class="w-full px-4 mb-6"><button type="submit" class="w-full btn btn-xs btn-outfill btn-block result-show">Download Hasil</button></div>
+          </form>
           <div class="w-full px-4 mb-6 flex justify-between">
             <div class="">
               <a target="_blank" href="https://api.whatsapp.com/send?phone=6281217199596&amp;text=Halo%20setelah%20tes%20kesehatan%20mental%20saya%20mendapat%20rekomendasi%20untuk%20konseling" class="btn btn-xs btn-fill" style="padding: 0.7rem 7px; width: 100% !important; margin-top: 10px; margin-bottom: 0px !important;">
@@ -230,7 +233,6 @@
     let email;
     
     $(document).ready(function() {
-      console.log(qnum);
       getQuestion();
       $('#qnext').hide();
 
@@ -449,7 +451,6 @@
       if (qnum == qtot+1) {
         toEmail();
       }
-      console.log(qnum);
     }
 
     showNextBtn = () => {
@@ -514,7 +515,6 @@
 
       addQuestionText(qnum-1);
       $('#question-info').text(`${qnum} dari ${qtot}`);
-      console.log(qnum);
     }
 
     assignQuestion = (data) => {
@@ -531,6 +531,8 @@
     addResultText = () => {
       $('#result-title').text(resultData.data.title);
       $('#result-wording').html(resultData.data.result);
+      $('#result-image').attr('src', resultData.data.image);
+      $('#result-id').val(resultData.data.id);
     }
 
     getQuestion = () => {
