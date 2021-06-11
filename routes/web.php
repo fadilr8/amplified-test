@@ -18,13 +18,27 @@ use App\Http\Controllers\ResultController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/participants', [DashboardController::class, 'participants'])->middleware(['auth'])->name('participants');
-Route::get('/roles', [DashboardController::class, 'roles'])->middleware(['auth'])->name('roles');
-Route::post('/role/{id}', [DashboardController::class, 'assignRole']);
 
+Route::group(['middleware' => ['role:superadministrator']], function () {
+    Route::group(['prefix' => 'role'], function () {
+        Route::get('/', [DashboardController::class, 'roleIndex'])->name('role.index');
+        Route::post('/', [DashboardController::class, 'roleCreate'])->name('role.create');
+        Route::get('/assign', [DashboardController::class, 'roleAssignIndex'])->name('role.assign.index');
+        Route::post('/assign/{id}', [DashboardController::class, 'roleAssign'])->name('role.assign.assign');
+        Route::get('/checker', [DashboardController::class, 'roleChecker'])->name('role.checker');
+    });
+    Route::prefix('permission')->group(function () {
+        Route::post('/', [DashboardController::class, 'permissionAssign'])->name('permission.assign');
+    });
+});
+
+Route::middleware(['auth', 'second'])->group(function () {
+    
+});
 Route::prefix('users')->group(function () {
     Route::get('/', [DashboardController::class, 'users'])->middleware(['auth'])->name('users');
     Route::post('/', [DashboardController::class, 'createUser'])->middleware(['auth'])->name('user.create');

@@ -50,7 +50,7 @@
                                         -
                                     @endif
                                 </td>
-                                <form method="POST" action="{{ url('/role', ['id' => $user->id]) }}">
+                                <form method="POST" action="{{ route('role.assign.assign', ['id' => $user->id]) }}">
                                     @csrf
                                     <td class="border border-emerald-500 px-4 py-2 text-emerald-600 font-medium">
                                         <div>

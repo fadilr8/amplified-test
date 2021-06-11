@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
 
-    @if (Auth::user()->hasRole(['superadministrator']))
+    @if (!request()->routeIs('dashboard'))
     @yield('content')
     @else
     <div class="py-12">
@@ -19,4 +19,5 @@
         </div>
     </div>
     @endif
+    @yield('scripts')
 </x-app-layout>

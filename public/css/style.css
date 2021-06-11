@@ -106,7 +106,7 @@ input:checked~.checkmark {
 input:checked~span#loading {
   display: inline;
   position: absolute;
-  /* z-index: 999; */
+  z-index: 999;
   right: 5%;
   top: 25%;
 }
@@ -132,7 +132,7 @@ input:checked~span#loading {
 input:checked~span#loading {
   display: inline;
   position: absolute;
-  /* z-index: 999; */
+  z-index: 999;
   right: 5%;
   top: 25%;
 }
@@ -235,7 +235,7 @@ input:checked~span#loading {
   border: .1rem solid #2B80A3!important;
   background: transparent;
   color: #2B80A3;
-  padding: .7rem 10%!important;
+  padding: .7rem!important;
   font-weight: 600;
 }
 .btn:not(:disabled):not(.disabled) {

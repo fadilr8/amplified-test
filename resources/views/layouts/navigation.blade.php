@@ -12,19 +12,23 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @if (Auth::user()->hasRole(['superadministrator']))
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    @if (Auth::user()->isAbleTo(['users-read']))
                     <x-nav-link :href="route('participants')" :active="request()->routeIs('participants')">
                         {{ __('Participants') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('roles')" :active="request()->routeIs('roles')">
-                        {{ __('Assign Role') }}
                     </x-nav-link>
                     <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
                         {{ __('Users') }}
                     </x-nav-link>
-                    @else
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    @endif
+                    @if (Auth::user()->hasRole(['superadministrator']))
+                    <x-nav-link :href="route('role.index')" :active="request()->routeIs('role.index')">
+                        {{ __('Roles') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('role.assign.index')" :active="request()->routeIs('role.assign.index')">
+                        {{ __('Assign Role') }}
                     </x-nav-link>
                     @endif
                 </div>

@@ -161,10 +161,25 @@
               <h4 class="question-intro-head">Yuk Cek Hasilnya!</h4>
               <p>Kamu sudah berhasil mengisi Test Kesehatan Online by Ibunda.id - Konseling Dengan Psikolog. Hasilnya menunjukan...</p>
               <div class="rekomendasi-area">
-                  <h5 class="font-semibold" id="result-title"></h5>
-                  <br>
-                  <p id="result-wording"></p>
+                <h5 class="font-semibold" id="result-title"></h5>
+                <br>
+                <p id="result-wording"></p>
               </div>
+          </div>
+        </div>
+        <div id="btn-group" class="flex flex-wrap -mx-4 text-center mb-2 mt-4">
+          <div class="w-full px-4 mb-6"><button class="w-full btn btn-xs btn-outfill btn-block result-show">Download Hasil</button></div>
+          <div class="w-full px-4 mb-6 flex justify-between">
+            <div class="">
+              <a target="_blank" href="https://api.whatsapp.com/send?phone=6281217199596&amp;text=Halo%20setelah%20tes%20kesehatan%20mental%20saya%20mendapat%20rekomendasi%20untuk%20konseling" class="btn btn-xs btn-fill" style="padding: 0.7rem 7px; width: 100% !important; margin-top: 10px; margin-bottom: 0px !important;">
+                Cari Bantuan
+              </a>
+            </div>
+            <div class="">
+              <a href="{{ route('home') }}" class="btn btn-xs btn-outfill ">
+                Kembali ke Beranda
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -215,6 +230,7 @@
     let email;
     
     $(document).ready(function() {
+      console.log(qnum);
       getQuestion();
       $('#qnext').hide();
 
@@ -400,7 +416,6 @@
         maxQuestion++;
         answer.push('sl');
       }
-      
     }
 
     prevQuestion = () => {
@@ -426,14 +441,15 @@
     nextQuestion = () => {
       if (qnum < qtot) {
         qnum++;
+        addQuestionText(qnum-1);
+        $('#question-info').text(`${qnum} dari ${qtot}`);
+        showNextBtn();
       }
       
-      addQuestionText(qnum-1);
-      $('#question-info').text(`${qnum} dari ${qtot}`);
-      showNextBtn();
-      if (qnum == qtot) {
+      if (qnum == qtot+1) {
         toEmail();
       }
+      console.log(qnum);
     }
 
     showNextBtn = () => {
@@ -498,6 +514,7 @@
 
       addQuestionText(qnum-1);
       $('#question-info').text(`${qnum} dari ${qtot}`);
+      console.log(qnum);
     }
 
     assignQuestion = (data) => {
